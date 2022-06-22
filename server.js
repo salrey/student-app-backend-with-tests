@@ -2,4 +2,9 @@
 
 const app = require('./app');
 
-app.listen(9000, () => console.log('Listening to server 9000')) 
+//anything required must be npm i
+require('dotenv').config();
+
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => console.log(`Listening to server on ${PORT}`))

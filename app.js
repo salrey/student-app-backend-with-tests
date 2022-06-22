@@ -6,13 +6,16 @@ const express = require('express');
 const app = express();
 
 const studentController = require('./controllers/studentsController')
+const namesController = require('./controllers/namesController')
 
-app.use('/students', studentController)
+
+app.use('/students', studentController);
+app.use('/names', namesController);
 
 //route
 app.get('/', (request, response) => {
-    response.send('Hello World!')
-})
+    response.send('Hello World!');
+});
 
 //export app
 module.exports = app; 
