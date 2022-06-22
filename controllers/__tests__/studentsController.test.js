@@ -14,5 +14,19 @@ describe('returns json data for all students', () => {
             });
     });
 
-    
+    //TDD(testDrivenDev) if api has a limit per query, then we should return that many students 
+    it('returns an object with a number of students equal to or less than a limit', async () => {
+        await supertest(app).get('/students?limit=10')
+            .expect(200)
+            .then(response => {
+                expect(response.body.students).toBeInstanceOf(Array);
+                expect(response.body.students.length).toBe(10);
+            })
+        await supertest(app).get('/students?limit=35')
+        .expect(200)
+        .then(response => {
+            expect(response.body.students).toBeInstanceOf(Array);
+            expect(response.body.students.length).toBe(25);
+        })
+    })
 })

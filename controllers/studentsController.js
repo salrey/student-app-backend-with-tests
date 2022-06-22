@@ -6,7 +6,19 @@ const controller = express.Router();
 const studentData = require('../studentData.json');
 // for every request there's a response 
 controller.get('/', (request, response) => {
-    response.json(studentData)
+    //how do I handle query string? 
+    //can set default for limit if there's no query
+    let {limit=25} = request.query; //> 10
+
+    limit = Number(limit)
+    //How do I change the student data according to the limit
+
+    // studentData.student = [25 items]
+
+    let result = {...studentData}
+    result.students = result.students.slice(0, limit)
+
+    response.json(result)
 })
 
 controller.get('/:id', (request, response) => {
