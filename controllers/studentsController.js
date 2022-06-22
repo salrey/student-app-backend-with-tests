@@ -10,14 +10,27 @@ controller.get('/', (request, response) => {
 })
 
 controller.get('/:id', (request, response) => {
-    const singleStudent = studentData.students.find((student) => student?.id === request.params.id)
-    
-    if (singleStudent) {
-        response.json(studentData.students.find((student) => student?.id === request.params.id))
-    } else {
-        response.send('Student not found')
+
+    try {
+
+        if (!/[0-9]/.test(request.params.id))
+        // if (typeof request.params.id !== 'Number')
+        {
+            response.send( "Student id must be a number");
+            return;
+        }
+
+        const singleStudent = studentData.students.find((student) => student?.id === request.params.id)
+        if (singleStudent) {
+            response.json(studentData.students.find((student) => student?.id === request.params.id))
+        } else {
+            response.send('Student not found')
+        }
+        } catch (err) {
+            response.status(500).send('An error occurred')
+        }
     }
-})
+)
 
 //send the controller to app.js 
 module.exports = controller;
