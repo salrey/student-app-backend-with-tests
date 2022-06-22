@@ -5,10 +5,14 @@ const express = require('express');
 //initialize app
 const app = express();
 
+const studentController = require('./controllers/studentsController')
+
+app.use('/students', studentController)
+
 //route
 app.get('/', (request, response) => {
     response.send('Hello World!')
 })
 
 //export app
-module.exports = app;
+module.exports = app; 
