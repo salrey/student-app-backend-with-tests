@@ -30,3 +30,7 @@ describe('returns json data for all students', () => {
         })
     })
 })
+
+//modify api so that it takes a min and max id an returns all students by id in that range 
+
+//students?min=3&max=10 //> all students with ids >= 3 and <= 10

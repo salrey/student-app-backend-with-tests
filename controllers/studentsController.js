@@ -4,21 +4,30 @@ const express = require('express');
 const controller = express.Router();
 
 const studentData = require('../studentData.json');
+
 // for every request there's a response 
 controller.get('/', (request, response) => {
     //how do I handle query string? 
-    //can set default for limit if there's no query
+    //set default for limit in deconstruction if there's no query
     let {limit=25} = request.query; //> 10
 
     limit = Number(limit)
     //How do I change the student data according to the limit
 
-    // studentData.student = [25 items]
+    // studentData.students = [25 items]
 
     let result = {...studentData}
     result.students = result.students.slice(0, limit)
 
     response.json(result)
+
+    //if SQL queries
+    // let {limit=25, min=0, max=INFINITY} = request.query; 
+    //  OR use if else statement 
+    // if (!min && !max) {
+    //     SELECT *  FROM students LIMIT $1, [limit]
+    // }
+    // SELECT * FROM students WHERE id >= $1 AND id <= $2 LIMIT $3, [min, max, limit]
 })
 
 controller.get('/:id', (request, response) => {
