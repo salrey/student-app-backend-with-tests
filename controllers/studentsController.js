@@ -1,5 +1,4 @@
 const express = require('express');
-const req = require('express/lib/request');
 
 //Router is capitalized since it's a constructor object
 const controller = express.Router();
@@ -11,7 +10,13 @@ controller.get('/', (request, response) => {
 })
 
 controller.get('/:id', (request, response) => {
-    response.json(studentData.students.find((student) => student?.id === request.params.id))
+    const singleStudent = studentData.students.find((student) => student?.id === request.params.id)
+    
+    if (singleStudent) {
+        response.json(studentData.students.find((student) => student?.id === request.params.id))
+    } else {
+        response.send('Student not found')
+    }
 })
 
 //send the controller to app.js 
