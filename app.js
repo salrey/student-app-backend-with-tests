@@ -10,10 +10,10 @@ const studentController = require('./controllers/studentsController')
 const namesController = require('./controllers/namesController')
 
 
+app.use(cors())
 app.use('/students', studentController);
 app.use('/names', namesController);
 
-app.use(cors())
 
 //route
 app.get('/', (request, response) => {
