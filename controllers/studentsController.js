@@ -31,7 +31,6 @@ controller.get('/', (request, response) => {
 })
 
 controller.get('/:id', (request, response) => {
-
     try {
 
         if (!/[0-9]/.test(request.params.id))
@@ -52,6 +51,18 @@ controller.get('/:id', (request, response) => {
         }
     }
 )
+
+//EXERCISES 
+
+//In a existing route implement min and max ids to get students
+
+//write a route to get a student by their full name 
+
+//write a route to get the grade average of a student by their id 
+
+//get all students sorted by their last name 
+
+
 
 //send the controller to app.js 
 module.exports = controller;
